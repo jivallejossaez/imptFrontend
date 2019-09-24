@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "Garamond";
+  src: url("../../../assets/Garamond-Light-Condensed.ttf");
+}
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+.link{
+  color:#007bff;
+
+}
+.link:hover{
+  color: #0056b3;
+  text-decoration:underline;
+  cursor: pointer;
+}
+/*.card-header{
+      background: linear-gradient(to right, #ca3129 0%,#ca3129 0%,#a31722 100%);
+}
+h4{
+  color: #fff;
+  margin-bottom: 0px;
+}*/
+.padd{
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 25px;
+}

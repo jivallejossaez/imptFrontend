@@ -1,0 +1,46 @@
+<div class="container">
+	<br>
+	<div class="row justify-content-center">
+		<div class="col-md-6 ">
+			<div class="card">
+			  <div class="card-header">
+			  		<h4 class="text-center">Iniciar Sesión</h4>
+			  </div>
+				<div class="card-body">
+				    <form #loginForm='ngForm'(ngSubmit)="iniciarSesion()">
+				    	<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+						    <div class="input-group-addon padd"><i class="fa fa-user" aria-hidden="true"></i></div>
+						    <input type="text" class="form-control" placeholder="correo@correo.cl" name="correo" #correo="ngModel" [(ngModel)]="user.correo" required>
+						    <br>
+						    <span *ngIf="!correo.valid && correo.touched">El correo no es Valido</span>
+					  	</div>
+						<br>
+						<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+							<div class="input-group-addon padd"><i class="fa fa-lock" aria-hidden="true"></i></div>
+						    <input type="password" class="form-control" placeholder="*******" name="clave" #clave="ngModel" [(ngModel)]="user.clave" required>
+						    <br>
+						    <span *ngIf="!clave.valid && clave.touched">La clave no es valida</span>
+						</div>
+						<br>
+						<div class="row justify-content-md-center" >
+
+							<div class="col-12 col-md-auto">
+								<button type="submit" class="btn btn-primary " [disabled]="!loginForm.form.valid">Iniciar Sesión</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row justify-content-center">
+		<p>¿Aún no tienes cuenta? <span (click)="registrar()" class="link">Regístrate aquí</span></p>
+	</div>
+	<div class="identity-alert alert alert-success text-center" *ngIf="identity && identity.sub">
+		¡Te has identificado correctamente bienvenido <strong>{{identity.nombre+ " "+ identity.apellido}}</strong>!
+	</div>
+	<div class="identity-alert alert alert-danger text-center" *ngIf="identity && identity.data">
+		Lo sentimos el nombre de usuario y contraseña no coinciden
+	</div>
+</div>

@@ -1,0 +1,58 @@
+<div class="header fondo">
+  <div class="logo-uach"></div>
+  <span class="site-name"><a href="http://impt.uach.cl/" title="Instituto de Materiales y Proc. Term." rel="home" class="titulo">Instituto de Materiales y Proc. Term.</a></span>
+	<span class="uach-header">UACh</span>
+  <div class="navegacion">
+    <!-- inicio -->
+    <ul class="nav justify-content-end" *ngIf="menu == 'inicio'">
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['loginusuario']" (click)="iniciousuario()" >Usuarios</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['loginresponsable']" (click)="inicioresponsable()">Responsable</a>
+      </li>
+    </ul>
+    <!-- iniciousuario -->
+  <ul class="nav justify-content-end" *ngIf="menu == 'iniciousuario'">
+    <li class="nav-item">
+      <a class="nav-link no-pad" [routerLink]="['inicio']" (click)="salir()">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link no-pad" [routerLink]="['loginusuario']">Iniciar Sesión</a>
+    </li>
+  </ul>
+  <!-- inicioresponsable -->
+  <ul class="nav justify-content-end" *ngIf="menu == 'inicioresponsable'">
+    <li class="nav-item">
+      <a class="nav-link no-pad" [routerLink]="['inicio']" (click)="salir()">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link no-pad" [routerLink]="['loginresponsable']">Iniciar Sesión</a>
+    </li>
+  </ul>
+      <!-- usuario -->
+    <ul class="nav justify-content-end" *ngIf="menu == 'usuario'">
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['solicitudes']">Mis Solicitudes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['solicitud']">Nueva Solicitud</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['/loginusuario','1']" (click)="salir()">Salir <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+      <!-- responsable -->
+    <ul class="nav justify-content-end" *ngIf="menu == 'responsable'">
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['gestionlaboratorios']">Solicitudes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['dashboard']">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link no-pad" [routerLink]="['/loginresponsable','1']" (click)="salir()">Salir <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+  </div>
+</div>

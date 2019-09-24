@@ -1,0 +1,81 @@
+<div class="container-fluid contenido">
+  <div class="form-group">
+    <label for="sel1">Seleccione Laboratorio</label>
+    <select class="form-control" [(ngModel)]="seleccionado" placeholder="Seleccione Laboratorio...">
+      <option *ngFor="let lab of laboratorios; let l = index" [ngValue]="lab">{{lab.nombre}}</option>
+    </select>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      Solicitudes
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Ver</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table" *ngFor="let sol of solicitudes; let s = index">
+              <ng-container *ngIf="seleccionado != undefined && sol.refHorario.refLaboratorio.idLaboratorio == seleccionado.idLaboratorio  && sol.estado == 'pendiente'">
+              <th scope="row">{{sol.idSolicitud}}</th>
+              <td>{{sol.refUsuario.nombre + " "+ sol.refUsuario.apellido}}</td>
+              <td><button class="btn botoncito btn-primary btn-sm" data-toggle="modal"  data-target="#TerminosyCondiciones"(click)="asignar(s)"><i class="fa fa-address-card-o" aria-hidden="true"></i></button></td>
+            </ng-container>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal fade " id="TerminosyCondiciones" tabindex="-1" role="dialog" aria-labelledby="TerminosyCondicionesTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="TerminosyCondicionesTitle">Solicitud: </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12"><p>  <strong>Usuario:    </strong>   <span *ngIf="solicitudseleccionada!= undefined">{{solicitudseleccionada.refUsuario.nombre +" "+ solicitudseleccionada.refUsuario.apellido}}</span></p></div>
+              <div class="col-md-6"><p>   <strong>Correo:     </strong>    <span *ngIf="solicitudseleccionada!= undefined">{{solicitudseleccionada.refUsuario.correo}}</span></p></div>
+              <div class="col-md-6"><p>   <strong>Telefono:   </strong>    <span *ngIf="solicitudseleccionada!= undefined">{{solicitudseleccionada.refUsuario.numeroTelefono}}</span></p></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <strong>Dia: </strong><span *ngIf="solicitudseleccionada!= undefined">{{solicitudseleccionada.refHorario.dia}}</span>
+              </div>
+              <div class="col-md-12">
+                <strong>Periodo: </strong>
+                <span *ngIf="solicitudseleccionada!= undefined && solicitudseleccionada.refHorario.hora == '08:10'">I: {{solicitudseleccionada.refHorario.hora}}</span>
+                <span *ngIf="solicitudseleccionada!= undefined && solicitudseleccionada.refHorario.hora == '09:50'">II: {{solicitudseleccionada.refHorario.hora}}</span>
+                <span *ngIf="solicitudseleccionada!= undefined && solicitudseleccionada.refHorario.hora == '11:30'">III: {{solicitudseleccionada.refHorario.hora}}</span>
+                <span *ngIf="solicitudseleccionada!= undefined && solicitudseleccionada.refHorario.hora == '14:10'">IV: {{solicitudseleccionada.refHorario.hora}}</span>
+                <span *ngIf="solicitudseleccionada!= undefined && solicitudseleccionada.refHorario.hora == '15:50'">V: {{solicitudseleccionada.refHorario.hora}}</span>
+                <span *ngIf="solicitudseleccionada!= undefined && solicitudseleccionada.refHorario.hora == '14:20'">VI: {{solicitudseleccionada.refHorario.hora}}</span>
+              </div>
+
+            </div>
+          </div>
+          <div class="row justify-content-md-center" >
+
+            <div class="col-12 col-md-auto">
+              <button class="btn btn-success btn-lg padd" data-dismiss="modal" (click)="actualizar('aceptada')">Aceptar</button>
+              <button class="btn btn-danger btn-lg" data-dismiss="modal" (click)="actualizar('rechazada')">Rechazar</button>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

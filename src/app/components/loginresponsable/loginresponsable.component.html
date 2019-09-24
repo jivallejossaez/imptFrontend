@@ -1,0 +1,38 @@
+<div class="container">
+	<br>
+	<div class="row justify-content-center">
+		<div class="col-md-6 ">
+			<div class="card">
+			  <div class="card-header">
+			  		<h4 class="text-center">Iniciar Sesión</h4>
+			  </div>
+				<div class="card-body">
+				    <form #loginForm='ngForm'(ngSubmit)="iniciarSesionResponsable()">
+				    	<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+						    <div class="input-group-addon padd"><i class="fa fa-user" aria-hidden="true"></i></div>
+						    <input type="text" class="form-control" placeholder="correo@correo.cl" name="correo" #correo="ngModel" [(ngModel)]="responsable.correo" required>
+						    <br>
+						    <span *ngIf="!correo.valid && correo.touched">El correo no es Valido</span>
+					  	</div>
+						<br>
+						<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+							<div class="input-group-addon padd"><i class="fa fa-lock" aria-hidden="true"></i></div>
+						    <input type="password" class="form-control" placeholder="*******" name="clave" #clave="ngModel" [(ngModel)]="responsable.clave" required>
+						    <br>
+						    <span *ngIf="!clave.valid && clave.touched">La clave no es valida</span>
+						</div>
+						<br>
+						<div class="row justify-content-md-center" >
+
+							<div class="col-12 col-md-auto">
+								<button type="submit" class="btn btn-primary " [disabled]="!loginForm.form.valid">Iniciar Sesión</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+</div>
+<br><br><br><br><br><br><br><br><br>

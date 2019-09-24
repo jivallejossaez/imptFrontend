@@ -1,0 +1,113 @@
+<div class="container">
+  <br>
+  <h3>Mis Solicitudes</h3>
+  <hr>
+  <div class="card">
+    <div class="card-header">
+      Solicitudes
+    </div>
+    <div class="card-body">
+      <h5>Solicitudes Pendientes</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Laboratorio</th>
+            <th scope="col" colspan="2">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table" *ngFor="let solicitud of solicitudes;let s = index">
+            <th scope="row" *ngIf="solicitud.estado == 'pendiente'">{{solicitud.idSolicitud}}</th>
+            <td *ngIf="solicitud.estado == 'pendiente'">{{solicitud.refHorario.refLaboratorio.nombre}}</td>
+            <td *ngIf="solicitud.estado == 'pendiente'"><span class="badge badge-warning">{{solicitud.estado}}</span></td>
+            <td *ngIf="solicitud.estado == 'pendiente'"><button class="btn botoncito btn-primary btn-sm" data-toggle="modal"  data-target="#TerminosyCondiciones"(click)="asignar(s)"><i class="fa fa-address-card-o" aria-hidden="true"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+      <h5>Solicitudes Aceptadas</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Laboratorio</th>
+            <th scope="col" colspan="2">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table" *ngFor="let solicitud of solicitudes;let s = index">
+            <th scope="row" *ngIf="solicitud.estado == 'aceptada' ">{{solicitud.idSolicitud}}</th>
+            <td *ngIf="solicitud.estado == 'aceptada'">{{solicitud.refHorario.refLaboratorio.nombre}}</td>
+            <td *ngIf="solicitud.estado == 'aceptada'"><span class="badge badge-success">{{solicitud.estado}}</span></td>
+            <td *ngIf="solicitud.estado == 'aceptada'"><button class="btn botoncito btn-primary btn-sm" data-toggle="modal"  data-target="#TerminosyCondiciones"(click)="asignar(s)"><i class="fa fa-address-card-o" aria-hidden="true"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+      <h5>Solicitudes Rechazadas</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Laboratorio</th>
+            <th scope="col" colspan="2">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr class="table" *ngFor="let solicitud of solicitudes; let s = index">
+              <th scope="row" *ngIf="solicitud.estado == 'rechazada'">{{solicitud.idSolicitud}}</th>
+              <td *ngIf="solicitud.estado == 'rechazada'">{{solicitud.refHorario.refLaboratorio.nombre}}</td>
+              <td *ngIf="solicitud.estado == 'rechazada'"><span class="badge badge-danger">{{solicitud.estado}}</span></td>
+              <td *ngIf="solicitud.estado == 'rechazada'"><button class="btn botoncito btn-primary btn-sm" data-toggle="modal"  data-target="#TerminosyCondiciones"(click)="asignar(s)"><i class="fa fa-address-card-o" aria-hidden="true"></i></button></td>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row pad">
+    <button type="button" class="btn btn-success boton" (click)="redireccionar()">Nueva Solicitud</button>
+  </div>
+
+
+
+  <div class="modal fade" id="TerminosyCondiciones" tabindex="-1" role="dialog" aria-labelledby="TerminosyCondicionesTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="TerminosyCondicionesTitle">Solicitud <span *ngIf="solicitudseleccionada !=undefined">{{solicitudseleccionada.idSolicitud}}</span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="solicitudseleccionada !=undefined">
+          <p><strong>Laboratorio: </strong> {{solicitudseleccionada.refHorario.refLaboratorio.nombre}}</p>
+          <p><strong>Día: </strong> {{solicitudseleccionada.refHorario.dia | date: 'yMMMMd'}}</p>
+          <p><strong>Horario: </strong>
+            <span *ngIf="solicitudseleccionada.refHorario.hora == '08:10' " >{{solicitudseleccionada.refHorario.hora + ' - 09:40'}}</span>
+            <span *ngIf="solicitudseleccionada.refHorario.hora == '09:50' " >{{solicitudseleccionada.refHorario.hora + ' - 11:20'}}</span>
+            <span *ngIf="solicitudseleccionada.refHorario.hora == '11:30' " >{{solicitudseleccionada.refHorario.hora + ' - 13:00'}}</span>
+            <span *ngIf="solicitudseleccionada.refHorario.hora == '14:10' " >{{solicitudseleccionada.refHorario.hora + ' - 15:40'}}</span>
+            <span *ngIf="solicitudseleccionada.refHorario.hora == '15:50' " >{{solicitudseleccionada.refHorario.hora + ' - 17:20'}}</span>
+            <span *ngIf="solicitudseleccionada.refHorario.hora == '17:30' " >{{solicitudseleccionada.refHorario.hora + ' - 19:00'}}</span>
+          </p>
+          <p><strong>Responsable del Laboratorio: </strong>
+            {{solicitudseleccionada.refHorario.refLaboratorio.refResponsable.nombre +" "+solicitudseleccionada.refHorario.refLaboratorio.refResponsable.apellido}} </p>
+          <p><strong>Correo del Responsable: </strong>
+            <a href="mailto: {{solicitudseleccionada.refHorario.refLaboratorio.refResponsable.correo}}">
+            {{solicitudseleccionada.refHorario.refLaboratorio.refResponsable.correo}} </a></p>
+          <p><strong>Estado de la solicitud: </strong>
+            <span class="badge badge-success"*ngIf="solicitudseleccionada.estado == 'aceptada' ">{{solicitudseleccionada.estado}}</span>
+            <span class="badge badge-warning"*ngIf="solicitudseleccionada.estado == 'pendiente' ">{{solicitudseleccionada.estado}}</span>
+            <span class="badge badge-danger"*ngIf="solicitudseleccionada.estado == 'rechazada' ">{{solicitudseleccionada.estado}}</span>
+          </p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+</div>

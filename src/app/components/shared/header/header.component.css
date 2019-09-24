@@ -1,0 +1,72 @@
+
+@font-face {
+  font-family: "Garamond";
+  src: url("../../../../assets/Garamond-Light-Condensed.ttf");
+}
+
+.fondo{
+  background: #ca3129; /* Old browsers */
+  background: -moz-linear-gradient(left,  #ca3129 0%, #ca3129 0%, #a31722 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #ca3129 0%,#ca3129 0%,#a31722 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #ca3129 0%,#ca3129 0%,#a31722 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca3129', endColorstr='#a31722',GradientType=1 ); /* IE6-9 */
+}
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ca3129+0,ca3129+0,a31722+100 */
+.header{
+  height: 105px;
+}
+.titulo{
+  color: #fff;
+    font-weight: 400px;
+    font-family: Garamond;
+    line-height: 105px;
+    font-size: 42.882px;
+    cursor:auto;
+}
+.titulo:hover{
+  text-decoration: none;
+  cursor:auto;
+}
+.uach-header {
+    float: right;
+    margin: 0px;
+    color: #E8E8E8;
+    font-weight: normal;
+    font-family: Garamond;
+    line-height: 105px;
+    font-size: 4em;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    padding-right: 12px;
+}
+.logo-uach {
+    width: 170px;
+    height: 135px;
+    background-color: #dedede;
+    margin-left: 18px;
+    z-index: 1;
+    text-align: center;
+    position: relative;
+    background-image: url("../../../../assets/logo-uach.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    opacity: 0.9;
+    border-top: 3px solid #585858;
+    box-shadow: 0 0 14px rgba(0,0,0,0.2);
+}
+.site-name {
+
+    padding-left: 30px;
+}
+.navegacion{
+  background: #555;
+  height: 30px;
+}
+.no-pad{
+  padding-top: 5.5px;
+  padding-bottom: 5.5px;
+  color: #fff;
+  border-left: 1px solid #656565;
+  font-size: 13px;
+}

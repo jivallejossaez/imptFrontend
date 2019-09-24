@@ -1,0 +1,199 @@
+<div class="mar">
+
+
+  <div id="accordion" role="tablist">
+
+  <!--Seleccionar Laboratorio-->
+    <div class="card">
+      <div class="card-header" role="tab" id="SeleccionarLaboratorioHeader">
+        <h5 class="mb-0">
+          <a data-toggle="collapse">
+            Paso 1: Seleccionar Laboratorio
+          </a>
+        </h5>
+      </div>
+
+      <div id="SeleccionarLaboratorio" class="collapse show" aria-labelledby="SeleccionarLaboratorioHeader" data-parent="#accordion">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="laboratorios">Seleccione un Laboratorio</label>
+            <select class="form-control" [(ngModel)]="seleccionado" placeholder="Seleccione Laboratorio...">
+              <option *ngFor="let lab of laboratorios; let l = index" [ngValue]="lab">{{lab.nombre}}</option>
+            </select>
+          </div>
+
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Nombre:</h6></div>               <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.nombre}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Responsable:</h6></div>          <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.refResponsable.nombre}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Correo:</h6></div>               <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.refResponsable.correo}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Ubicación:</h6></div>            <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.ubicacion}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Instituto:</h6></div>            <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.instituto}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Equipo de Trabajo:</h6> </div>   <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.equipotrabajo}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Perfil:</h6></div>               <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.perfil}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Descripción:</h6></div>          <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.descripcion}}</span></div></div>
+          <div class="row"><div class="col-xs-12 col-md-2"><h6 class="text-md-right">Equipos:</h6></div>              <div class="col-xs-12 col-md-10"><span *ngIf="seleccionado != null">{{seleccionado.equipos}}</span></div></div>
+          <br><br>
+
+          <div class="row">
+            <div class="col-md-10 col-xs-4">
+
+            </div>
+            <div class="col-md-2 col-xs-1">
+              <a class="collapsed enlace btn btn-success btn-block" data-toggle="collapse" href="#SeleccionarHorario" aria-expanded="false" aria-controls="Resumen" (click)="horariodellaboratorio()">
+                Siguiente
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!--Seleccionar Horario-->
+    <div class="card">
+      <div class="card-header" role="tab" id="SeleccionarHorarioHeader">
+        <h5 class="mb-0">
+          <a class="collapsed">
+            Paso 2: Seleccionar Horario
+          </a>
+        </h5>
+      </div>
+      <div id="SeleccionarHorario" class="collapse" role="tabpanel" aria-labelledby="SeleccionarHorarioHeader" data-parent="#accordion">
+        <div class="card-body">
+          <div class="container">
+
+            <table class="table table-bordered table-responsive">
+              <thead>
+                <tr>
+                  <th scope="col">Horario</th>
+                  <th scope="col" *ngFor="let dia of dias">{{dia}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let horario of horarios; let h = index">
+
+                  <th scope="row">{{horario}}</th>
+                  <td *ngFor="let periodo of dias; let p = index" (click)="cambiarestado((h*5)+p)" class="text-center verde" >
+                    <span *ngFor="let sol of listadosolicitudes"><span *ngIf="sol.refHorario.idHorario == horariosSeleccionados[(h*5)+p].idHorario" class="text-danger"> Ocupado</span> </span>
+                    <span *ngIf="periodos[(h*5)+p].estado"><h2 class="fa fa-check-square" aria-hidden="true"></h2></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-2 col-xs-1">
+              <button type="button" class="btn btn-danger btn-block"><a class="collapsed enlace" data-toggle="collapse" href="#SeleccionarLaboratorio" aria-expanded="false" aria-controls="SeleccionarLaboratorio">
+                Volver
+              </a></button>
+            </div>
+            <div class="col-md-8 col-xs-4">
+
+            </div>
+            <div class="col-md-2 col-xs-1">
+              <a class="collapsed enlace btn btn-success btn-block" data-toggle="collapse" href="#Resumen" aria-expanded="false" aria-controls="Resumen" (click)="generarsolicitudes()">
+                Siguiente
+              </a>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  <!--Resumen-->
+    <div class="card">
+      <div class="card-header" role="tab" id="ResumenHeader">
+        <h5 class="mb-0">
+          <a class="collapsed">
+            Paso 3: Resumen
+          </a>
+        </h5>
+      </div>
+      <div id="Resumen" class="collapse" role="tabpanel" aria-labelledby="ResumenHeader" data-parent="#accordion">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xs-12 col-md-6 ">
+                <h5>Tus Datos</h5>
+                <hr>
+                <strong>Nombre:</strong><p>{{identity.nombre +" "+ identity.apellido}}</p>
+                <strong>Rut:</strong><p>{{identity.rut}}</p>
+                <strong>Correo:</strong><br><a href="mailto:{{identity.correo}}">{{identity.correo}}</a>
+                <hr>
+                <h5>Datos del Laboratorio</h5>
+                <hr>
+                <strong>Nombre: </strong><span *ngIf="seleccionado != null"><p>{{seleccionado.nombre}}</p></span>
+                <strong>Responsable: </strong><span *ngIf="seleccionado != null"><p>{{seleccionado.refResponsable.nombre}}</p></span>
+                <strong>Correo: </strong><span *ngIf="seleccionado != null"><a href="mailto:{{seleccionado.refResponsable.correo}}">{{seleccionado.refResponsable.correo}}</a></span>
+
+            </div>
+            <div class="col-xs-12 col-md-6 ">
+              <h5>Horarios Seleccionados</h5>
+              <hr>
+              <p><span *ngFor="let periodo of periodos"><span *ngIf="periodo.estado"><strong>{{dias[periodo.dia]+": "}}</strong>{{horarios[periodo.horario]}}<br></span></span></p>
+              <table class="table table-bordered table-sm">
+                <thead>
+                  <tr class="table-active">
+                    <th scope="col">Horario</th>
+                    <th scope="col" *ngFor="let dia of dias">{{dia}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let horario of horarios; let h = index">
+
+                    <th scope="row">{{horario}}</th>
+                    <td *ngFor="let periodo of dias; let p = index"  [ngClass]="{'bg-success': periodos[(h*5)+p].estado}"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row  justify-content-md-center">
+            <label><input type="checkbox" class="input">Leí y acepte las <span data-toggle="modal" data-target="#TerminosyCondiciones" class="link"> condiciones de los usos de los laboratorios</span></label>
+          </div>
+
+
+          <br><br>
+
+
+
+          <div class="modal fade" id="TerminosyCondiciones" tabindex="-1" role="dialog" aria-labelledby="TerminosyCondicionesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="TerminosyCondicionesTitle">Terminos y Condiciones</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 col-xs-1">
+              <button type="button" class="btn btn-danger btn-block"><a class="collapsed enlace" data-toggle="collapse" href="#SeleccionarHorario" aria-expanded="false" aria-controls="SeleccionarHorario">
+                Volver
+              </a></button>
+            </div>
+            <div class="col-md-8 col-xs-4">
+
+            </div>
+            <div class="col-md-2 col-xs-1">
+              <button type="button" class="btn btn-primary btn-block" (click)="enviarsolicitudes()">Enviar Solicitudes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="identity-alert alert alert-success text-center" *ngIf="status">
+  ¡Tu Solicitud Fue ingresada Correctamente!
+</div>

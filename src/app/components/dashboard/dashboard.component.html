@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="card">
+    <div class="card-header">
+      Número de Solicitudes
+    </div>
+    <div class="card-body">
+      <div style="display: block" *ngIf="datoscargados">
+        <canvas baseChart
+        [data]="datosgrafico"
+        [labels]="nombrelaboratorios"
+        [chartType]="pieChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      Uso Diario
+    </div>
+    <div class="card-body">
+      <div style="display: block" *ngIf="datoscargados">
+        <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="dias"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>

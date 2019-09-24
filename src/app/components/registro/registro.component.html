@@ -1,0 +1,93 @@
+<div class="container">
+	<br>
+	<h3>Formulario de Registro</h3>
+	<hr>
+	<form [formGroup]="forma" (ngSubmit)="registrarUsuario()">
+
+		<div class="form-group row">
+			<label class="form-control-label col-sm-2" for="nombres">Nombres</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" id="nombres" formControlName="nombres" [ngClass]="{ 'is-invalid' : !forma.controls['nombres'].valid && forma.controls['nombres'].touched, 'is-valid':forma.controls['nombres'].valid} ">
+				<div class="invalid-feedback" *ngIf="forma.controls['nombres'].errors?.required && forma.controls['nombres'].touched">
+					El nombre es necesario
+				</div>
+				<div class="invalid-feedback" *ngIf="forma.controls['nombres'].errors?.minlength && forma.controls['nombres'].touched">
+					El nombre debe tener almenos 3 caracteres
+				</div>
+				<div class="invalid-feedback" *ngIf="forma.controls['nombres'].errors?.maxlength && forma.controls['nombres'].touched">
+					El nombre debe tener menos de 50 caracteres
+				</div>
+			</div>
+			<label class="form-control-label col-sm-2" for="apellidos">Apellidos</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" id="apellidos" formControlName="apellidos" [ngClass]="{ 'is-invalid' : !forma.controls['apellidos'].valid && forma.controls['apellidos'].touched, 'is-valid':forma.controls['apellidos'].valid} ">
+				<div class="invalid-feedback" *ngIf="!forma.controls['apellidos'].valid && forma.controls['apellidos'].touched">
+					Los apellidos son necesarios
+				</div>
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="form-control-label col-sm-2" for="rut">Rut</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" id="rut" formControlName="rut" [ngClass]="{ 'is-invalid' : !forma.controls['rut'].valid && forma.controls['rut'].touched, 'is-valid':forma.controls['rut'].valid} " placeholder=" Por ejemplo: 12.325.879-k" formatRut>
+
+				<div class="invalid-feedback" *ngIf="!forma.controls['rut'].valid && forma.controls['rut'].touched">
+					El rut es necesario
+				</div>
+			</div>
+			<label class="form-control-label col-sm-2" for="correo">Correo</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="email" id="correo" formControlName="correo" [ngClass]="{ 'is-invalid' : !forma.controls['correo'].valid && forma.controls['correo'].touched, 'is-valid':forma.controls['correo'].valid} ">
+				<div class="invalid-feedback" *ngIf="!forma.controls['correo'].valid && forma.controls['correo'].touched">
+					El correo es necesario
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="form-control-label col-sm-2" for="telefono">Teléfono</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="number" id="telefono" formControlName="telefono" [ngClass]="{ 'is-invalid' : !forma.controls['telefono'].valid && forma.controls['telefono'].touched, 'is-valid':forma.controls['telefono'].valid} ">
+				<div class="invalid-feedback" *ngIf="!forma.controls['telefono'].valid && forma.controls['telefono'].touched">
+					El teléfono es necesario
+				</div>
+			</div>
+			<label class="form-control-label col-sm-2" for="dependencia">Dependencia</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" id="dependencia" formControlName="dependencia" [ngClass]="{ 'is-invalid' : !forma.controls['dependencia'].valid && forma.controls['dependencia'].touched, 'is-valid':forma.controls['dependencia'].valid}" placeholder=" Por ejemplo: Universidad Austral, Saesa">
+				<div class="invalid-feedback" *ngIf="!forma.controls['dependencia'].valid && forma.controls['dependencia'].touched">
+					La dependencia es necesaria
+				</div>
+			</div>
+
+		</div>
+		<div class="form-group row">
+			<label class="form-control-label col-sm-2" for="persona">Tipo de Persona</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" id="persona" formControlName="persona" [ngClass]="{ 'is-invalid' : !forma.controls['persona'].valid && forma.controls['persona'].touched, 'is-valid':forma.controls['persona'].valid} "placeholder="Por ejemplo: Estudiante, Profesor, Externo">
+				<div class="invalid-feedback" *ngIf="!forma.controls['persona'].valid && forma.controls['persona'].touched">
+					El tipo de persona es necesario
+				</div>
+			</div>
+			<label class="form-control-label col-sm-2" for="contrasena1">Contraseña</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="password" id="contrasena1" formControlName="contrasena1" [ngClass]="{ 'is-invalid' : !forma.controls['contrasena1'].valid && forma.controls['contrasena1'].touched, 'is-valid':forma.controls['contrasena1'].valid} ">
+				<div class="invalid-feedback" *ngIf="!forma.controls['contrasena1'].valid && forma.controls['contrasena1'].touched">
+					La contraseña es necesaria
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<br><br>
+			<div class="row justify-content-md-center" >
+				<div class="col-12 col-md-auto">
+					<button type="submit" class="btn btn-primary" [ngClass]="{'btn-primary': forma.valid}" [disabled]="!forma.valid">Registrarse</button>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</div>
+<div class="identity-alert alert alert-success text-center" *ngIf="status">
+  ¡Te has registrado correctamente!
+</div>

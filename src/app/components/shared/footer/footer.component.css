@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "Garamond";
+  src: url("../../../../assets/Garamond-Light-Condensed.ttf");
+}
+
+
+.footer{
+  height: 228px;
+  background: #222;
+  color: #ccc;
+}
+.contenido-footer{
+  border-top: 5px solid #8f3931;
+}
+.footer-uach{
+  text-align: center;
+  height: 105px;
+}
+.footer-uach>h1 {
+    display: inline;
+    font-family: Garamond;
+    font-weight: normal;
+    font-size: 35px;
+    line-height: 105px;
+}
+.logo{
+  width: 80px;
+  padding-right: 20px;
+  background-color: #222;
+  display: inline;
+}
+.footer-direccion{
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  height: 35px;
+
+}
+.footer-direccion>p>a{
+  text-decoration: none;
+  color: #ccc;
+}
+.footer-direccion>p>a:hover{
+  text-decoration: none;
+  color: #999;
+}
+.footer-link{
+  height: 31px;
+  text-align: center;
+  padding-top: 6.5px;
+}
+.linea{
+  border-bottom: 1px solid #121212;
+  box-shadow: 0 1px #2A2A2A;
+  margin: 0px 0;
+}
+ul{
+  padding-left: 0px;
+  list-style: none;
+  font-size: 12px;
+}
+li{
+  display: inline;
+}
+ul>li>a{
+  padding-left: 8px;
+  padding-right:  8px;
+  text-decoration: none;
+  color: #ccc;
+}
+.borde{
+  border-left: 1px solid #cccccc;
+}
+.footer_derechos{
+  padding-top: 12px;
+  text-align: center;
+  font-size: 11px;
+}

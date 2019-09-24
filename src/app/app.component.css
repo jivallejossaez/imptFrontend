@@ -1,0 +1,22 @@
+html {
+  min-height: 100%;
+}
+.main{
+  padding-top: 8px;
+  min-height: 708px;
+
+  background: #f2f2f2;
+}
+.margin{
+  margin-top: 30px;
+
+}
+.fondo-principal{
+  margin-top: 0px;
+  background: #f2f2f2;
+}
+.footer{
+  padding-right: 0px;
+  padding-left: 0px;
+
+}
